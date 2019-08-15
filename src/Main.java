@@ -69,6 +69,21 @@ public class Main {
 
     public static void main(String[] args) {
         String category = "shuma";
+        int n_gl_topics = 40;
+        int n_loc_topics = 20;
+        int iter_nums = 10;
+        if (args.length > 0) {
+            category = args[0];
+        }
+        if (args.length > 1) {
+            n_gl_topics = Integer.parseInt(args[1]);
+        }
+        if (args.length > 2) {
+            n_loc_topics = Integer.parseInt(args[2]);
+        }
+        if (args.length > 3) {
+            iter_nums = Integer.parseInt(args[3]);
+        }
 
         String input_dir = "./test_data/" + category + "/";
         String ifn_bow = input_dir + category + "_sample.bow";
@@ -78,9 +93,6 @@ public class Main {
         String ofn_topics = output_dir + category + "_sample.topics";
         String ofn_model = output_dir + category + "_sample.model";
 
-        int n_gl_topics = 40;
-        int n_loc_topics = 20;
-        int iter_nums = 10;
         HashMap<Integer, String> id2word = parse_bow_file(ifn_bow);
         LinkedList<LinkedList<LinkedList<Integer>>> doc_sentence_words = parse_reviews(ifn_inds);
 
