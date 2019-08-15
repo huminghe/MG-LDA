@@ -1,2 +1,5 @@
 *.txt
 data
+*.iml
+test_results/
+.idea
