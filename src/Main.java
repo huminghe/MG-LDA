@@ -45,7 +45,7 @@ public class Main {
         while (in.hasNext()) {
             String line = in.nextLine();
             String[] ts = line.split("\t");
-            if (ts.length > 1) {
+            if (ts.length > 1 && ts[1].split(" ").length < 200) {
                 int doc_id = Integer.parseInt(ts[0]);
 
                 if (doc_id != doc_id_prev && doc_id_prev != -1) {
