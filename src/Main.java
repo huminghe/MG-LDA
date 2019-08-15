@@ -45,21 +45,24 @@ public class Main {
         while (in.hasNext()) {
             String line = in.nextLine();
             String[] ts = line.split("\t");
-            if (ts.length > 1 && ts[1].split(" ").length < 200) {
+            if (ts.length > 1 && ts[1].split(" ").length < 256) {
                 int doc_id = Integer.parseInt(ts[0]);
 
                 if (doc_id != doc_id_prev && doc_id_prev != -1) {
                     doc_sentence_words.add(sent_words);
                     sent_words = new LinkedList<LinkedList<Integer>>();
                 }
+                
+                if (sent_words.size() < 256) {
+                    LinkedList<Integer> words = new LinkedList<Integer>();
+                    ts = ts[1].split(" ");
+                    for (String word : ts) {
+                        words.add(Integer.parseInt(word));
+                    }
 
-                LinkedList<Integer> words = new LinkedList<Integer>();
-                ts = ts[1].split(" ");
-                for (String word : ts) {
-                    words.add(Integer.parseInt(word));
+                    sent_words.add(words);
                 }
 
-                sent_words.add(words);
                 doc_id_prev = doc_id;
             }
         }
